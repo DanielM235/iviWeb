@@ -1,0 +1,50 @@
+<div class="aside" tabindex="-1" role="dialog" ng-controller="login_ctrl">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header head-title">
+        <h4 class="aside-title">Login</h4>
+      </div>
+      <div class="aside-body">
+           <div class="row">
+              <div class="col-md-12">
+                Login via
+                <div class="social-buttons">
+                  <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                  <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                </div>
+                                ou
+                 <div>
+                    <div class="form-group">
+                       <label class="sr-only" for="exampleInputEmail2">Email</label>
+                       <input 
+                       ng-model="user.email"
+                       type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                    </div>
+                    <div class="form-group">
+                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required
+                       ng-model="user.password">
+                       <input type="password" 
+                       ng-show="state.mode=='inscription'"
+                       ng-model="password_check"
+                       class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                       <button 
+                       ng-show="state.mode =='connexion'"
+                       class="btn btn-block button-login" ng-click="email_login();$event.stopPropagation()">Login</button>
+                       <button 
+                       ng-show="state.mode =='inscription'"
+                       class="btn btn-block button-login" ng-click="email_signin();$event.stopPropagation()">S'inscrire</button>
+                    </div>
+                 </div>
+              </div>
+              <div class="bottom text-center">
+                <button class="btn btn-sm button-login" ng-click="state.mode = 'connexion';$event.stopPropagation()"><b>Se connecter</b></button>
+                <button class="btn btn-sm button-login" ng-click="state.mode = 'inscription';$event.stopPropagation()"><b>S'inscrire</b></button>
+              </div>
+           </div>
+      </div>
+    </div>
+  </div>
+</div>

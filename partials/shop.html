@@ -1,0 +1,182 @@
+
+<section class ="fondSite" > 
+
+<!-- boutton modal personnliser carte -->
+   <center><button class="personaliserCarte" data-toggle="modal" data-target="#myModal">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> 
+    </button></center> 
+
+<!-- modal Personnaliser carte -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header1">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <table border="0">  
+                <tr>
+                    <td>
+                        <p class="p1"><span class="modal-title" id="myModalLabel">
+                            Nous créons votre carte personnalisée aux fonctionnalités premium
+                        </span> </p>
+                        <p class="p2"><span>
+                          Charte graphique, slogan, logo, design, nos graphistes s'occupent d'intégrer votre identité en suiant à la lettre vos recommandations.  
+                        </span></p>
+                        <p class="p2"><span>
+                            Nous associons aux cartes personnalisée des fonctionalités premium adaptées à votre secteur d'activité.
+                        </span></p>
+                        <p class="p1"><span>
+                            Qu'attendez-vous pour donner une nouvelle impulsion à vos réseaux!?
+                        </span></p>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td>
+                     <button class="bouttonContact" ng-show="!textContact" ng-click ="textContact=!textContact" >Contactez-nous</button>
+                    </td>
+                </tr>
+                    <tr >
+                        <td>
+                            <input class="textContact" type="text" name="nom" ng-show="textContact" placeholder="Votre nom" ng-model = "textNom">
+                        
+                             <input class="textContact" type="text" name="prénom" ng-show="textContact" placeholder="Votre prénom" ng-model = "textPrenom">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <br>
+                           <input class="textContact" type="text" name="adresse mail" ng-show="textContact" placeholder="Votre adresse email" ng-model="textEmail">
+                        
+                           <input class="textContact" type="text" name="numero telephone" ng-show="textContact" placeholder="Votre numero de telephone" ng-model = "textNumero">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <br>
+                            <input class="messageContact" type="text" name="message" ng-show="textContact" placeholder="Votre message" ng-model = "textMessage">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <br>
+                            <a href="mailto:hvpillot@gmail.com?subject=Personnaliser votre carte&body={{textNom}}%0D%0A{{textPrenom}}%0D%0A{{textEmail}}%0D%0A{{textNumero}}%0D%0A{{textMessage}}">
+                            <button class="bouttonContact" ng-show="textContact">Envoyer</button> </a>
+                        </td>
+                    </tr>
+              
+                <tr>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="p1">
+                            Faite votre carte avec un outil graphique.
+                        <br></p>
+                    </td>
+                </tr>
+                
+                 <tr>
+                    <td>
+                     <button class="bouttonContact">Achetez l'outil graphique
+                     </button>
+                    </td>
+                </tr>
+            </table>
+          </div>
+       
+      </div>
+    </div>
+<!-- fin modal Personnaliser carte -->
+ 
+        <div class="bandSelect" id="navbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                   <select ng-model="filter" class="selectMetier">
+                       <option ng-repeat="(category,title) in categories" value="{{category}}">{{title}}
+                       </option>
+                   </select>
+                </li>
+                <li>
+                    <a class="ajouterCarte" data-toggle="modal" data-target="#achatCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="caddieFonds.length > 0" ng-click="calculPrix()">
+                        <div ng-switch-when = false>Ajouter cette carte</div> 
+                        <div ng-switch-when = true> Ajouter ces &nbsp{{caddieFonds.length}}&nbsp cartes</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <div class ="shop">     
+        <div class="col-sm-1 glob" id="slider-thumbs"> 
+            <ul class="hide-bullets" > 
+                <li class="col-sm-3" ng-repeat = 'template in listCards'> 
+                    <a class="thumbnail card {{template}}" id="carousel-selector-{{template}}" data-toggle="modal" data-target="#openFond" ng-click="setCurrentTemplate(template)">
+                        <img class = "imgAvatar" src="../img/icon-ivipulse.png" alt="imgAvatar">
+                        <div ng-switch = "isAdded(template)" ng-click = "ajouteFond(template)">
+                            <img  ng-switch-when=false class="plusOkIcon" src="img/plus.jpg" alt="plus">   
+                            <img ng-switch-when=true class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
+                        </div>
+                    </a> 
+                </li> 
+            </ul> 
+        </div>   
+    </div> 
+<!-- modal ouvrir un fond de carte -->
+    <div class="modal fade" id="openFond" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modalOpen" role="document">
+            <div class="modal-content">
+                <div class="modal-header2">
+                    <img class ="imgAvatarM" src="{{user.avatar}}" alt="imgAvatarM">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                </div>
+                    <center>
+                    <div class="modal-content openFond card {{currentTemplate}}">
+                    </div>
+                    <div class="modalAjoute" data-toggle="dropdown" ng-switch = "isAdded(currentTemplate)" ng-click = "ajouteFond(currentTemplate)">
+                        <button class = "f" ng-switch-when = false>Ajouter cette carte</button>
+                        <button class = "t" ng-switch-when = true> Retirer cette carte</button>
+                    </div> 
+                    </center>
+            </div>
+        </div>
+    </div>
+<!-- fin modal -->
+<!-- modal achatCarte -->
+    <div class ="modal fade" id="achatCarte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <center>
+                        <p class="achatTitle">Achat de cartes premium</p>
+                        <div>
+                        <p class="achatCarte" ng-show="achat"> Vous avez choisit &nbsp{{caddieFonds.length}}&nbsp carte(s), vous avez &nbsp {{user.credits}} &nbsp crédit(s)
+                        </p>
+                        <p class="achatCarte" ng-show="!achat"> Achat effectué, vous restez &nbsp {{user.credits}} &nbsp crédit(s)
+                        </p>
+                        </div>
+
+                        <h5 style="color:white"> * 1 credit = 1 carte </h5>
+                        <p>
+
+                        <button class="achatBouton" ng-click="buy_cards()"> Achetez avec vos crédits</button>
+                        </p> 
+                        <h5 style="color:red"></h5> 
+
+                        <p class="achatCarte" ng-show="achatCredits"> Vous avez choisit &nbsp{{caddieFonds.length}} carte(s) =  &nbsp{{caddieFonds.length}} credit(s) &nbsp &nbsp &nbsp 
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{prix | number:2}} €
+                        </p>
+                        <p class="achatCarte" ng-show="!achatCredits"> Achat effectué</p>
+                         <h5 style="color:white"> * 1.99€/carte, -10% pour 2 à 5 cartes, -20% dès 6 cartes</h5>
+
+                        <!-- <h5 style="color:red">{{err.message}}</h5> -->
+
+                        <button class="achatBouton" ng-click="orderAchatCredit()">Achetez vos crédits</button>
+                        <p class="achatPied">Ou ajoutez &nbsp <span class="resteCarte">{{50-countCardShared}}</span>&nbsp contacts pour bénéficier d'un fond de carte gratuit</p>
+                        
+                     </center>
+            </div>
+        </div>
+    </div>
+</section>

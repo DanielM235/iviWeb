@@ -1,0 +1,56 @@
+<div class="main-block">
+	<div class="container main-card card background {{card._sender.template}}">
+		<div class="row">
+			<div class="col-xs-10">
+				<div class="row">
+					<div class="user-avatar-infos">
+						<div class="col-xs-4">
+							<div class="avatar-block">
+								<img src="{{card._sender.avatar}}" class="avatar-image">
+								<!--<div style="background-image:url({{card._sender.avatar}});height: 200px;width: 200px;background-size: cover;;background-repeat: no-repeat;border-radius: 50%;border: 1px solid white; overflow: hidden;margin-top:15px;" class="avatar-image">
+								</div>-->
+							</div>
+						</div>
+
+						<div class="col-xs-8">
+							<div class="profile-infos">
+								<div class="username">
+									<br><br>
+									<span>{{card._sender.first_name}}</span>
+									<br>
+									<span>{{card._sender.last_name}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-8">
+							<div class="full-infos">
+									
+									<div>{{card._sender.job}}</div>
+									<div>{{card._sender.company}}</div>
+									<div>{{card._sender.phone1}}</div>
+									<div>{{card._sender.phone2}}</div>
+							</div>
+							<div class="social-list">
+								<i class="fa fa-facebook fa-2x"></i>
+								<i class="fa fa-twitter fa-2x"></i>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<div class="card-actions">
+					<a ng-click="" class="icon-action">
+						<img src="img/svg/icon-mail2.svg" class="icon-action" />
+					</a>
+					<br>
+					<a ng-click="" class="icon-action">
+						<img class="icon-action" src="img/svg/icon-url.svg">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
