@@ -1,11 +1,13 @@
 //création du contrôleur "login_ctrl"
-app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $cookies, me) {
+app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $cookies, me, fileService) {
 	
 	console.log("LoginCtrl initialized");
 	//déclaration des variables du $scope
+	$scope.user = {};
 	$scope.card = {};
-	$scope.card._sender = $rootScope.user;
 	$scope.password_check = "";
+
+	$scope.imgUpload = fileService.getFile();
 
 	$scope.loggedIn = !!$rootScope.globals.currentUser;
 
@@ -18,12 +20,12 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	$scope.email_login = function () {
 
 		
-		if(!$scope.$parent.user.email || !$scope.$parent.user.password){
+		if(!$scope.user.email || !$scope.user.password){
 			$scope.err.message = "Champs email et password obligatoires";
 		}
 		else{
 			//appel de la fonction login de la factory "me"
-			me.login($scope.$parent.user.email, $scope.$parent.user.password)
+			me.login($scope.user.email, $scope.user.password)
 			//1er callback, s'exécute lorsque la méthode me.login
 			//a terminé son exécution
 			.then(function(user) {
@@ -46,24 +48,24 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	 */
 	$scope.email_signin = function () {
 
-		if(!$scope.$parent.user.email || !$scope.$parent.user.password) {
+		if(!$scope.user.email || !$scope.user.password) {
 			$scope.err.message = "Champs email et password obligatoires";
 		}
 
 		else {
 
 			//on vérifie la correspondance des mots de passe
-			if($scope.$parent.user.password !== $scope.password_check) {
+			if($scope.user.password !== $scope.password_check) {
 				$scope.err.message = "Les mots de passe ne sont pas identiques";
 			}
 
 			else {
-				me.signin($scope.$parent.user.email, $scope.$parent.user.password)
+				me.signin($scope.user.email, $scope.user.password)
 	  		//1er callback, s'exécute lorsque la méthode me.login
 	  		//a terminé son exécution
 	  		.then(function(res) {
 	  			//stocke l'objet renvoyé par la factory dans le scope
-	  			$scope.$parent.user = res;
+	  			$scope.user = res;
 	  			$scope.err.message = null;
 	  			$location.path("/profil");
 	  		})
@@ -93,23 +95,26 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	 */
 	$scope.update= function(){
 
-		if($scope.$parent.user){
+		if($scope.user){
 			 
-			 if(!$scope.$parent.user.first_name || !$scope.$parent.user.last_name) {
+			 if(!$scope.user.first_name || !$scope.user.last_name) {
 
 				$scope.err.message = "Champs Nom et Prénom obligatoires";
 			}
 
 			else {
+
+				$scope.user.avatar = ROOT_URL + '/statics/' + fileService.getFile().name;
+				console.log("dans login_ctrl, $scope.user.avatar : ", $scope.user.avatar);
 				//appel de la fonction update de la factory "me"
-				 me.update($scope.$parent.user)
+				 me.update($scope.user)
 				 //1er callback, s'exécute lorsque la méthode me.update
 				//a terminé son exécution
 				 .then(function(res) {
 					//stocke l'objet tmp_user renvoyé par la factory dans le scope
-					$scope.$parent.user = res;
+					$scope.user = res;
 					$scope.err.message = null;
-					$scope.success.message = null;
+					//$scope.success.message = null;
 
 					//fin de l'inscription
 					if($rootScope.globals.currentUser.new_user){
@@ -124,7 +129,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 					
 				})
 				.catch(function(err) {
-					$scope.err.message = "Les champs nom ou prénom sont absents";
+					$scope.err.message = err;
 				});
 			}
 		}
@@ -134,4 +139,21 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			$scope.err.message = "Problème interne";
 		}
 	};
+
+	$scope.addFile = function (){
+		var file = fileService.getFile();
+		$scope.imgUpload = file;
+		//console.log("dans login_ctrl, mon fichier : ", file);
+		console.log("dans login_ctrl, $scope.imgUpload : ", $scope.imgUpload);
+	};
+
+	var init = function () {
+		me.me()
+		.then (function(user){
+			$scope.user = user;
+			$scope.card._sender = $scope.user;
+		})
+	};
+
+	init();
 });

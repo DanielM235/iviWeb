@@ -128,13 +128,15 @@
 							<span class="input-group-addon">
 								<img class="icon-form" src="img/svg/icon-camera.svg"/>
 							</span>
-							<label type="text" id="avatar" name="upload" ng-model="user.avatar" class="form-control champOnly">{{user.avatar}}</label>
+							<label type="text" id="avatar" name="upload" ng-model="user.avatar" class="form-control champOnly">{{imgUpload}}</label>
 							</div>
 						</div>
 						<div class="form-group col-xs-12 col-sm-12 col-md-12">
 							<div class="input-group ">
-								<input id="avatar" type="file" accept=".jpg,.png,.doc,.gif,.pdf,.svg,.jpeg" for="upload" class="btn btn-default"/>
+								<input id="avatar" type="file" accept=".jpg,.png,.doc,.gif,.pdf,.svg,.jpeg" for="upload" class="btn btn-default" ng-model="imgUpload"/>
 							</div>
+							<pre>img : {{ imgUpload.name | json }}</pre>
+							<input id="file" type="file" name="file" file-upload="" ng-click="addFile()" />
 						</div>
 						<!--	
 						<div class="form-group col-xs-12 col-sm-12 col-md-12">
