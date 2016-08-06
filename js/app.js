@@ -7,7 +7,8 @@ var app = angular.module("ivipulse", [
   'ngCookies',
   'mgcrea.ngStrap',
   'mgcrea.ngStrap.modal',
-  'ngAnimate'
+  'ngAnimate',
+  'base64'
 ]);
 
 var ROOT_URL = 'http://192.168.1.16:8180';

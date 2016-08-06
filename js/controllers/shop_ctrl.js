@@ -60,7 +60,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
     };
 
     /**
-        Cette fonction retourne vrai si le fond est déjà présent dans la liste des fonds à ajouter 
+        Cette fonction retourne vrai si le fond est déjà présent dans la liste des fonds à ajouter
     */
 	$scope.isAdded = function(fond){
         return $scope.caddieFonds.indexOf(fond) != -1;
@@ -81,7 +81,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
     shopListFonds();
 
-  
+
 
 
     /**
@@ -124,7 +124,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
         @template : fond sélectionné
     */
     $scope.ajouteFond = function(template){
-        
+
     	if(!$scope.isAdded(template)){
     		$scope.caddieFonds.push(template);
     	}
@@ -154,7 +154,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
                 $scope.$parent.user.credits = credits;
             });
             $scope.achatCredits = false;
-        }        
+        }
     };
 
     /**
@@ -172,8 +172,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
             });
             $scope.achat = false;
         }
-        
-    }
+
+    };
 
 });
-

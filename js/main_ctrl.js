@@ -3,6 +3,8 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
 
 	console.log("MainCtrl initialized");
 	//déclaration et initialisation des variables
+
+	$scope.user = {};
 	//$scope.user = $rootScope.user || {};
 	$scope.err = {
 		message: ""
@@ -53,9 +55,10 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
 
         me.me()
         .then(function(user){
-        	$rootScope.user = user;
+        	$rootScope.user = $scope.user = user;
+					console.log(user);
         });
-        
+
         //actualisation des contacts
 		refresh_cards();
 		//actualisation des compteurs.

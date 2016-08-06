@@ -33,7 +33,7 @@
 				                        	<label>Reciproque(s)</label>
 				                        </div>
 				                    </div>
-				                    <pre>nom : {{user.first_name}}</pre>
+				                    <pre>avatar : {{user.avatar}}</pre>
 				                    <div class="row resultat-table-profil">
 					                    <div class="col-xs-4 col-sm-4 col-md-4">
 					                        <label>{{cards.length}}</label>
@@ -83,14 +83,14 @@
 			        		</a>
 						</div>
 					</div>
-	             <!--fin div bouton-->   
+	             <!--fin div bouton-->
                 </div>
-			<!--fin div card-profil-ivi-->		
+			<!--fin div card-profil-ivi-->
 			</div>
-		<!--fin div col-lg-6-->	
+		<!--fin div col-lg-6-->
 		</div>
 		<div class="col-lg-offset-1 col-lg-5 right-profil">
-			
+
 				<form  id="signForm" name="signForm" ng-submit="update()" role="form" novalidate>
 					<legend id="titre">Profil</legend>
 			        <div class="form-group col-xs-12 col-sm-12 col-md-12">
@@ -121,7 +121,7 @@
 			        </div>
 					<div class="form-group col-xs-6 col-sm-6 col-md-6">
 						<label id="titre">Importer votre avatar</label>
-					</div>	
+					</div>
 					<div class="form-group">
 						<div class="form-group col-xs-12 col-sm-12 col-md-12">
 							<div class="input-prepend input-append input-group ">
@@ -133,12 +133,10 @@
 						</div>
 						<div class="form-group col-xs-12 col-sm-12 col-md-12">
 							<div class="input-group ">
-								<input id="avatar" type="file" accept=".jpg,.png,.doc,.gif,.pdf,.svg,.jpeg" for="upload" class="btn btn-default" ng-model="imgUpload"/>
+								<input id="avatar" type="file" accept=".jpg,.png,.doc,.gif,.pdf,.svg,.jpeg" for="upload" class="btn btn-default" ng-model="imgUpload" file-upload="" ng-click="addFile()"/>
 							</div>
-							<pre>img : {{ imgUpload.name | json }}</pre>
-							<input id="file" type="file" name="file" file-upload="" ng-click="addFile()" />
 						</div>
-						<!--	
+						<!--
 						<div class="form-group col-xs-12 col-sm-12 col-md-12">
 							<button class="btn btn-default" type="button">Parcourir</button>
 						</div>-->
@@ -191,7 +189,7 @@
 		                   <input type="email" class="form-control champOnly" name="mail2"  ng-model="user.email2" placeholder="Mail 2" />
 		                </div>
             		</div>
-            		<div class="form-group col-xs-6 col-sm-6 col-md-6"> 
+            		<div class="form-group col-xs-6 col-sm-6 col-md-6">
 		                <div class="input-group">
 		                   <span class="input-group-addon">
 		                   		<img class="icon-form" src="img/svg/icon-localisation.svg"/>
@@ -231,7 +229,7 @@
 					              <span aria-hidden="true">&times;</span>
 					            </button>
 					          </div>
-					            <table id="popuSocial" border="0"> 
+					            <table id="popuSocial" border="0">
 					                <tr>
 					                    <td>
 					                        <p class="p1">
@@ -244,7 +242,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formFacebook" ng-submit="enregistreFacebook()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupFacebook" ng-model="user.social"/> 
+													<input type="texte" name="popupFacebook" ng-model="user.social"/>
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -273,7 +271,7 @@
 				            	<img src="img/twitter2.png"/>
 				              	<span class="hidden-xs"></span>
 				            </a>
-			            </div> 
+			            </div>
 				        <!-- modal Twitter -->
 						<div class="modal fade" id="modalTwitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						      <div class="modal-dialog" role="document">
@@ -283,7 +281,7 @@
 						              <span aria-hidden="true">&times;</span>
 						            </button>
 						          </div>
-						            <table id="popuSocial" border="0"> 
+						            <table id="popuSocial" border="0">
 						                <tr>
 						                    <td>
 						                        <p class="p1">
@@ -296,7 +294,7 @@
 						                        <p class="p2"><span>
 						                        <form id="formFacebook" ng-submit="enregistreTwitter()">
 						                        	<div class="form-group">
-														<input type="texte" name="popupTwitter" ng-model="user.social"/> 
+														<input type="texte" name="popupTwitter" ng-model="user.social"/>
 						                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 						                        	</div>
 						                        	</span></p>
@@ -335,7 +333,7 @@
 						              <span aria-hidden="true">&times;</span>
 						            </button>
 						          </div>
-						            <table id="popuSocial" border="0"> 
+						            <table id="popuSocial" border="0">
 						                <tr>
 						                    <td>
 						                        <p class="p1">
@@ -348,7 +346,7 @@
 						                        <p class="p2"><span>
 						                        <form id="formFacebook" ng-submit="enregistreLinkedIn()">
 						                        	<div class="form-group">
-														<input type="texte" name="popupLinkedIn" ng-model="user.social"/> 
+														<input type="texte" name="popupLinkedIn" ng-model="user.social"/>
 						                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 						                        	</div>
 						                        	</span></p>
@@ -377,7 +375,7 @@
 				                <img src="img/snapchat.png"/>
 				                <span class="hidden-xs" aria-hidden="true"></span>
 			            	</a>
-			          	</div> 
+			          	</div>
 				        <!-- modal Snapchat -->
 						<div class="modal fade" id="modalSnapchat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						      <div class="modal-dialog" role="document">
@@ -387,7 +385,7 @@
 						              <span aria-hidden="true">&times;</span>
 						            </button>
 						          </div>
-						            <table id="popuSocial" border="0"> 
+						            <table id="popuSocial" border="0">
 						                <tr>
 						                    <td>
 						                        <p class="p1">
@@ -400,7 +398,7 @@
 						                        <p class="p2"><span>
 						                        <form id="formFacebook" ng-submit="enregistreSnapchat()">
 						                        	<div class="form-group">
-														<input type="texte" name="popupSnapchat" ng-model="user.social"/> 
+														<input type="texte" name="popupSnapchat" ng-model="user.social"/>
 						                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 						                        	</div>
 						                        	</span></p>
@@ -439,7 +437,7 @@
 						              <span aria-hidden="true">&times;</span>
 						            </button>
 						          </div>
-						            <table id="popuSocial" border="0"> 
+						            <table id="popuSocial" border="0">
 						                <tr>
 						                    <td>
 						                        <p class="p1">
@@ -452,7 +450,7 @@
 						                        <p class="p2"><span>
 						                        <form id="formGitHub" ng-submit="enregistreGitHub()">
 						                        	<div class="form-group">
-														<input type="texte" name="popupGitHub" ng-model="user.social"/> 
+														<input type="texte" name="popupGitHub" ng-model="user.social"/>
 						                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 						                        	</div>
 						                        	</span></p>
@@ -491,7 +489,7 @@
 					              <span aria-hidden="true">&times;</span>
 					            </button>
 					          </div>
-					            <table id="popuSocial" border="0"> 
+					            <table id="popuSocial" border="0">
 					                <tr>
 					                    <td>
 					                        <p class="p1">
@@ -504,7 +502,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formViadeo" ng-submit="enregistreViadeo()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupSkype" ng-model="user.social"/> 
+													<input type="texte" name="popupSkype" ng-model="user.social"/>
 					                           		<button class="btn btn-default" ng-click ="VerifViadeo()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -527,9 +525,9 @@
 					          </div>
 					      </div>
 					    </div>
-						<!-- fin modal Viadeo--> 
+						<!-- fin modal Viadeo-->
 					</div>
-					<div class="row onl_row-sm-12 onl_socialButtons">       
+					<div class="row onl_row-sm-12 onl_socialButtons">
 			    		<div class="col-xs-2 col-sm-2">
 				            <a class="btn btn-lg btn-social-icon btn-skype" data-toggle="modal" data-placement="top" title="Skype" data-target="#modalSkype">
 				              <img src="img/skype2.png"/>
@@ -545,7 +543,7 @@
 					              <span aria-hidden="true">&times;</span>
 					            </button>
 					          </div>
-					            <table id="popuSocial" border="0"> 
+					            <table id="popuSocial" border="0">
 					                <tr>
 					                    <td>
 					                        <p class="p1">
@@ -558,7 +556,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formSkype" ng-submit="enregistreSkype()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupSkype" ng-model="user.social"/> 
+													<input type="texte" name="popupSkype" ng-model="user.social"/>
 					                           		<button class="btn btn-default" ng-click ="VerifSkype()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -581,13 +579,13 @@
 					          </div>
 					      </div>
 					    </div>
-						<!-- fin modal Skype --> 
+						<!-- fin modal Skype -->
 			          	<div class="col-xs-2 col-sm-2">
 				            <a class="btn btn-lg btn-block onl_btn-tumblr" data-toggle="modal" data-placement="top" title="Tumblr" data-target="#modalTumblr">
 				              <img src="img/tumblr2.png"/>
 				              <span class="hidden-xs"></span>
 				            </a>
-			          	</div> 
+			          	</div>
 				        <!-- modal Tumblr -->
 						<div class="modal fade" id="modalTumblr" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						      <div class="modal-dialog" role="document">
@@ -597,7 +595,7 @@
 						              <span aria-hidden="true">&times;</span>
 						            </button>
 						          </div>
-						            <table id="popuSocial" border="0"> 
+						            <table id="popuSocial" border="0">
 						                <tr>
 						                    <td>
 						                        <p class="p1">
@@ -610,7 +608,7 @@
 						                        <p class="p2"><span>
 						                        <form id="formTumblr" ng-submit="enregistreTumblr()">
 						                        	<div class="form-group">
-														<input type="texte" name="popupTumblr" ng-model="user.social"/> 
+														<input type="texte" name="popupTumblr" ng-model="user.social"/>
 						                           		<button class="btn btn-default" ng-click ="update()" >Verifier</button>
 						                        	</div>
 						                        	</span></p>
@@ -639,7 +637,7 @@
 				               <img src="img/youtube2.png"/>
 				              <span class="hidden-xs"></span>
 				            </a>
-			          	</div> 
+			          	</div>
 				        <!-- modal Youtube -->
 						<div class="modal fade" id="modalYoutube" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						      <div class="modal-dialog" role="document">
@@ -649,7 +647,7 @@
 						              <span aria-hidden="true">&times;</span>
 						            </button>
 						          </div>
-						            <table id="popuSocial" border="0"> 
+						            <table id="popuSocial" border="0">
 						                <tr>
 						                    <td>
 						                        <p class="p1">
@@ -662,7 +660,7 @@
 						                        <p class="p2"><span>
 						                        <form id="formYoutube" ng-submit="enregistreYoutube()">
 						                        	<div class="form-group">
-														<input type="texte" name="popupYoutube" ng-model="user.social"/> 
+														<input type="texte" name="popupYoutube" ng-model="user.social"/>
 						                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 						                        	</div>
 						                        	</span></p>
@@ -701,7 +699,7 @@
 					              <span aria-hidden="true">&times;</span>
 					            </button>
 					          </div>
-					            <table id="popuSocial" border="0"> 
+					            <table id="popuSocial" border="0">
 					                <tr>
 					                    <td>
 					                        <p class="p1">
@@ -714,7 +712,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formPinterest" ng-submit="enregistrePinterest()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupFacebook" ng-model="user.social"/> 
+													<input type="texte" name="popupFacebook" ng-model="user.social"/>
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -743,7 +741,7 @@
 				              <img src="img/instagram2.png"/>
 				              <span class="hidden-xs"></span>
 				            </a>
-				        </div> 
+				        </div>
 				        <!-- modal Instagram -->
 					    <div class="modal fade" id="modalInstagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					      <div class="modal-dialog" role="document">
@@ -753,7 +751,7 @@
 					              <span aria-hidden="true">&times;</span>
 					            </button>
 					          </div>
-					            <table id="popuSocial" border="0"> 
+					            <table id="popuSocial" border="0">
 					                <tr>
 					                    <td>
 					                        <p class="p1">
@@ -766,7 +764,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formInstagram" ng-submit="enregistreInstagram()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupInstagram" ng-model="user.social"/> 
+													<input type="texte" name="popupInstagram" ng-model="user.social"/>
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -805,7 +803,7 @@
 					              <span aria-hidden="true">&times;</span>
 					            </button>
 					          </div>
-					            <table id="popuSocial" border="0"> 
+					            <table id="popuSocial" border="0">
 					                <tr>
 					                    <td>
 					                        <p class="p1">
@@ -818,7 +816,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formSteam" ng-submit="enregistreSteam()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupSteam" ng-model="user.social"/> 
+													<input type="texte" name="popupSteam" ng-model="user.social"/>
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -851,19 +849,19 @@
 			            	<span class="progress-type">Remplissage de votre profil</span>
 			            	<span class="progress-completed">20%</span>
 			        	</div>
-			        </div>	
+			        </div>
 		        	<div class="form-group col-xs-6 col-sm-6 col-md-6">
-		        		<button class="btn btn-sg btn-default btn-block" type="submit" ng-click="update()"><img id="logo-button-profil" src="img/svg/icon-check.svg"/>
+		        		<button class="btn btn-sg btn-default btn-block" type="submit"><img id="logo-button-profil" src="img/svg/icon-check.svg"/>
                			 Valider
             			</button>
 		        	</div>
 				<!--fin form-->
 				</form>
-			<!--fin div au dessus form-->	
-			
-		<!--fin div col-lg-6-->	
+			<!--fin div au dessus form-->
+
+		<!--fin div col-lg-6-->
 		</div>
-	<!--fin div row-->	
+	<!--fin div row-->
 	</div>
-<!--fin div container-->	
+<!--fin div container-->
 </div>
