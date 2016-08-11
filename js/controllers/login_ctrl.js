@@ -11,6 +11,10 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 
 	$scope.loggedIn = !!$rootScope.globals.currentUser;
 
+	$scope.social_networks = ['Facebook', 'Twitter', 'LinkedIn', 'Snapchat',
+	'GitHub', 'Viadeo', 'Skype', 'Tumblr', 'Youtube', 'Pinterest',
+	'Instagram', 'Steam'];
+
 
 	/**
 	 * La méthode email_login permet à un utilisateur de

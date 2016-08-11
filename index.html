@@ -16,21 +16,21 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><-->
 		<script src="lib/js/jquery-2.2.4.js"></script>
 
-		<!-- BootStrap script file 
+		<!-- BootStrap script file
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
 		<script src="lib/js/bootstrap.js"></script>
 		<script src="lib/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
-		
+
 		<!-- <script src="lib/js/bootstrap-datetimepicker.min.js"></script>
-		<script src="lib/js/bootstrap-datetimepicker.fr.js"></script> 
+		<script src="lib/js/bootstrap-datetimepicker.fr.js"></script>
 			       -->
 	    <!-- lodash module -->
 	    <script src="node_modules/lodash/lodash.js"></script>
-	    
-	    <!-- AngularJS app file -->  
+
+	    <!-- AngularJS app file -->
 	    <script src="js/app.js"></script>
 	    <script src="lib/js/angular-base64.js"></script>
-	    
+
 	    <!--controllers -->
 	    <script src="js/main_ctrl.js" ></script>
 	    <script src="js/controllers/login_ctrl.js"></script>
@@ -47,6 +47,7 @@
 	    <script src="js/directives/card.directive.js"></script>
 	    <script src="js/directives/cardProfil.directive.js"></script>
 	    <script src="js/directives/file.directive.js"></script>
+			<script src="js/directives/social.directive.js"></script>
 
 	    <!-- filters -->
 	    <script src="js/filters/search.filter.js"></script>
@@ -56,12 +57,12 @@
 	    <!-- For Bootstrap
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
 		<link href="lib/css/bootstrap.css" rel="stylesheet">
-		
+
 
 		<!-- Optional theme for Bootstrap-->
 		<link href="lib/css/bootstrap-theme.css" rel="stylesheet">
-		
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="lib/css/font-awesome.css" rel="stylesheet">
 
       	<!-- Style sheets for AngularStrap -->
@@ -78,10 +79,10 @@
 	    <link href="css/profil.css" rel="stylesheet">
 	    <link rel="stylesheet" type="text/css" href="css/card.css">
 	    <link href="css/home.css" type="text/css" rel="stylesheet">
-	    
+
 
 	</head>
-	<!-- Chargement du module principal au travers de la directive ng-app 
+	<!-- Chargement du module principal au travers de la directive ng-app
 	et initialisation du contrôleur principal -->
 	<body ng-app="ivipulse" ng-controller="main_ctrl" data-spy="scroll">
 		<div class="container-fluid bar-global">
@@ -99,7 +100,7 @@
 				          	<img src="img/icon-ivipulse.png" class="bar-icon-logo"/>
 				          </div>
 			          </a>
-			        <!-- fin div class="navbar-header"  -->  
+			        <!-- fin div class="navbar-header"  -->
 			    </div>
 		        <div class="collapse navbar-collapse" id="navbar-collapse-3">
 		          <ul class="nav navbar-nav navbar-right">
@@ -128,9 +129,9 @@
 		<!-- Emplacement des vues des différentes pages définies dans la table de routage
 		au travers de la directive ng-view
 		-->
-		<div ng-view></div> 
+		<div ng-view></div>
 	</div>
-  </body> 
+  </body>
   <link href='https://api.ivipulse.com/templates/all.css' rel='stylesheet'>
 
 </html>
