@@ -109,8 +109,8 @@
     <div class ="shop">
         <div class="col-sm-1 glob" id="slider-thumbs">
             <ul class="hide-bullets" >
-                <li class="col-sm-3" ng-repeat = 'template in listCards'>
-                    <a class="thumbnail card {{template}}" id="carousel-selector-{{template}}" data-toggle="modal" data-target="#openFond" ng-click="setCurrentTemplate(template)">
+                <li class="col-sm-3" ng-repeat = 'template in listCards | filter:is_not_owned()'>
+                    <a class="thumbnail card {{template}}" id="carousel-selector-{{template}}" data-toggle="modal" data-target="#openFond" ng-click="setCurrentTemplate(template)" ng-if="!is_owned(template)">
                         <img class = "imgAvatar" src="{{user.avatar}}" alt="imgAvatar">
                         <div ng-switch = "isAdded(template)" ng-click = "ajouteFond(template)">
                             <img  ng-switch-when=false class="plusOkIcon" src="img/plus.jpg" alt="plus">
@@ -147,32 +147,32 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close_buy_modal()"><span aria-hidden="true">&times;</span></button>
                     <center>
                         <p class="achatTitle">Achat de cartes premium</p>
                         <div>
-                        <p class="achatCarte" ng-show="achat"> Vous avez choisit &nbsp{{caddieFonds.length}}&nbsp carte(s), vous avez &nbsp {{user.credits}} &nbsp crédit(s)
+                        <p class="achatCarte" ng-show="achat"> Vous avez choisi &nbsp{{caddieFonds.length}}&nbsp carte(s), vous avez &nbsp {{user.credits}} &nbsp crédit(s)
                         </p>
-                        <p class="achatCarte" ng-show="!achat"> Achat effectué, vous restez &nbsp {{user.credits}} &nbsp crédit(s)
+                        <p class="achatCarte" ng-show="!achat"> Achat effectué, il vous vous reste &nbsp {{user.credits}} &nbsp crédit(s)
                         </p>
                         </div>
 
-                        <h5 style="color:white"> * 1 credit = 1 carte </h5>
+                        <h5 style="color:white"> * 1 crédit = 1 carte </h5>
                         <p>
 
                         <button class="achatBouton" ng-click="buy_cards()"> Achetez avec vos crédits</button>
                         </p>
                         <h5 style="color:red"></h5>
 
-                        <p class="achatCarte" ng-show="achatCredits"> Vous avez choisit &nbsp{{caddieFonds.length}} carte(s) =  &nbsp{{caddieFonds.length}} credit(s) &nbsp &nbsp &nbsp
+                        <p class="achatCarte" ng-show="achatCredits"> Vous avez choisi &nbsp{{caddieFonds.length}} carte(s) =  &nbsp{{caddieFonds.length}} crédit(s) &nbsp &nbsp &nbsp
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{prix | number:2}} €
                         </p>
                         <p class="achatCarte" ng-show="!achatCredits"> Achat effectué</p>
                          <h5 style="color:white"> * 1.99€/carte, -10% pour 2 à 5 cartes, -20% dès 6 cartes</h5>
 
-                        <!-- <h5 style="color:red">{{err.message}}</h5> -->
+                        <h5 style="color:red">{{err.message}}</h5>
 
-                        <button class="achatBouton" ng-click="orderAchatCredit()">Achetez vos crédits</button>
+                        <button class="achatBouton" ng-click="orderAchatCredit()">Achetez des crédits</button>
                         <p class="achatPied">Ou ajoutez &nbsp <span class="resteCarte">{{50-countCardShared}}</span>&nbsp contacts pour bénéficier d'un fond de carte gratuit</p>
 
                      </center>

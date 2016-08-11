@@ -69,7 +69,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
     init: function (data) {
       console.log("dans me.init ");
       this._data = data;
-      console.log('this._data = ' , this._data);
       this.is_authenticated = true;
 
       //getters
@@ -321,6 +320,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
          return $q(function(resolve,reject){
         $http(req)
         .success(function(res){
+          me._data.premium_cards = res.premium_cards;
           resolve(res);
         })
         .error(function(err) {
@@ -419,7 +419,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       return $q(function(resolve, reject){
         $http(req)
         .success(function(avatar){
-          console.log("requete post picture ok, avatar = ", avatar.avatar);
           resolve(avatar.avatar);
         })
         .error(function(err) {

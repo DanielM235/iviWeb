@@ -105,18 +105,15 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			else {
 
 				//$scope.user.avatar = ROOT_URL + '/statics/' + fileService.getFile().name;
-				console.log("dans login_ctrl, $scope.user.avatar : ", $scope.user.avatar);
 				var encodedPicture;
 				fileService.encodeFile()
 				.then(function(fileB64){
 					if(fileB64){
 						encodedPicture = fileB64;
-						console.log("dans login_ctrl, encodedPicture : ", encodedPicture);
 						return me.post_picture(encodedPicture);
 					}
 				})
 				.then(function(avatar){
-					console.log("dans login_ctrl, avatar : ", avatar);
 					$scope.user.avatar = avatar;
 					//appel de la fonction update de la factory "me"
 					return me.update($scope.user);
@@ -155,8 +152,6 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	$scope.addFile = function (){
 		var file = fileService.getFile();
 		$scope.imgUpload = file;
-		//console.log("dans login_ctrl, mon fichier : ", file);
-		console.log("dans login_ctrl, $scope.imgUpload : ", $scope.imgUpload);
 	};
 
 	var init = function () {

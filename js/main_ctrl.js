@@ -56,7 +56,6 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
         me.me()
         .then(function(user){
         	$rootScope.user = $scope.user = user;
-					console.log(user);
         });
 
         //actualisation des contacts

@@ -162,17 +162,36 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
     */
     $scope.buy_cards = function(){
         if($scope.$parent.user.credits < $scope.caddieFonds.length){
-            $scope.err.message = " Credit insuffisant";
+            $scope.err.message = " Crédit insuffisant";
         }
         else{
             me.purchase_card_buy($scope.caddieFonds)
             .then(function(res){
                 $scope.fondsPossedes = res.premium_cards;
                 $scope.$parent.user.credits = res.credits;
+                $scope.caddieFonds = [];
             });
             $scope.achat = false;
+            $scope.err.message = "";
         }
 
     };
+
+    $scope.close_buy_modal = function(){
+        $scope.err.message = "";
+    }
+
+    /**
+     * Cette fonction renvoie vrai si le fond de carte
+     * n'a pas encore été acheté par le user.
+     * Elle est utilisée pour filtrer l'affichage des fonds
+     * dans la page du shop.
+     */
+    $scope.is_not_owned = function(){
+        //console.log("me_data_premium_cards : ", me._data.premium_cards );
+        return function(template) {
+            return !(me._data.premium_cards.indexOf(template) != -1);
+        }
+    }
 
 });
