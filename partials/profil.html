@@ -3,7 +3,7 @@
 		<div class="col-lg-6 left-profil">
 			<div class="card-profil-ivi">
 				<div class="maCarte">
-					<ivicard card="card" ></ivicard>
+					<ivicard card="user_card" ></ivicard>
 				</div>
 				<div class="row">
 					<div class="mesStatistiques">
@@ -33,7 +33,6 @@
 				                        	<label>Reciproque(s)</label>
 				                        </div>
 				                    </div>
-				                    <pre>avatar : {{user.avatar}}</pre>
 				                    <div class="row resultat-table-profil">
 					                    <div class="col-xs-4 col-sm-4 col-md-4">
 					                        <label>{{cards.length}}</label>
@@ -122,24 +121,23 @@
 					<div class="form-group col-xs-6 col-sm-6 col-md-6">
 						<label id="titre">Importer votre avatar</label>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<div class="form-group col-xs-12 col-sm-12 col-md-12">
-							<div class="input-prepend input-append input-group ">
-							<span class="input-group-addon">
+							<div class="input-prepend input-append input-group">
+							<span class="input-group-addon" type="file" ng-model="imgUpload" file-upload="" ng-click="addFile()">
 								<img class="icon-form" src="img/svg/icon-camera.svg"/>
 							</span>
 							<label type="text" id="avatar" name="upload" ng-model="user.avatar" class="form-control champOnly">{{imgUpload}}</label>
 							</div>
 						</div>
 						<div class="form-group col-xs-12 col-sm-12 col-md-12">
-							<div class="input-group ">
-								<input id="avatar" type="file" accept=".jpg,.png,.doc,.gif,.pdf,.svg,.jpeg" for="upload" class="btn btn-default" ng-model="imgUpload" file-upload="" ng-click="addFile()"/>
-							</div>
-						</div>
-						<!--
-						<div class="form-group col-xs-12 col-sm-12 col-md-12">
 							<button class="btn btn-default" type="button">Parcourir</button>
-						</div>-->
+						</div>
+					</div>-->
+					<div class="form-group col-xs-12 col-sm-12 col-md-12">
+						<div class="input-group ">
+							<input id="avatar" type="file" accept=".jpg,.png,.doc,.gif,.pdf,.svg,.jpeg" for="upload" class="btn btn-default" ng-model="imgUpload" file-upload="" ng-click="addFile()"/>
+						</div>
 					</div>
 					<div class="form-group col-xs-6 col-sm-6 col-md-6">
 		                <div class="input-group">

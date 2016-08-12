@@ -2,14 +2,18 @@
 app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $cookies, me, fileService) {
 
 	console.log("LoginCtrl initialized");
+	console.log("début LoginCtrl, scope.user : ", $scope.user);
 	//déclaration des variables du $scope
-	$scope.user = {};
-	$scope.card = {};
+	//$scope.user = {};
+	//$scope.card = {};
 	$scope.password_check = "";
+
+	$scope.success = {
+		message: ""
+	}
 
 	$scope.imgUpload = fileService.getFile();
 
-	$scope.loggedIn = !!$rootScope.globals.currentUser;
 
 	$scope.social_networks = ['Facebook', 'Twitter', 'LinkedIn', 'Snapchat',
 	'GitHub', 'Viadeo', 'Skype', 'Tumblr', 'Youtube', 'Pinterest',
@@ -22,20 +26,19 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	 */
 
 	$scope.email_login = function () {
+		console.log("Dans login_ctrl/login user = ", $scope.$parent.user);
 
-
-		if(!$scope.user.email || !$scope.user.password){
+		if(!$scope.$parent.user.email || !$scope.$parent.user.password){
 			$scope.err.message = "Champs email et password obligatoires";
 		}
 		else{
 			//appel de la fonction login de la factory "me"
-			me.login($scope.user.email, $scope.user.password)
+			me.login($scope.$parent.user.email, $scope.$parent.user.password)
 			//1er callback, s'exécute lorsque la méthode me.login
-			//a terminé son exécution
+			//a terminé et renvoie sa promise
 			.then(function(user) {
-				//stocke l'objet user renvoyé par la factory dans le scope
-				//$rootScope.user = user;
-				$scope.loggedIn = true;
+				$scope.$parent.user = user;
+				$scope.$parent.loggedIn = true;
 				$scope.err.message = null;
 				$location.path('/profil');
 			})
@@ -52,24 +55,25 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	 */
 	$scope.email_signin = function () {
 
-		if(!$scope.user.email || !$scope.user.password) {
+		if(!$scope.$parent.user.email || !$scope.$parent.user.password) {
 			$scope.err.message = "Champs email et password obligatoires";
 		}
 
 		else {
 
 			//on vérifie la correspondance des mots de passe
-			if($scope.user.password !== $scope.password_check) {
+			if($scope.$parent.user.password !== $scope.password_check) {
 				$scope.err.message = "Les mots de passe ne sont pas identiques";
 			}
 
 			else {
-				me.signin($scope.user.email, $scope.user.password)
+				me.signin($scope.$parent.user.email, $scope.$parent.user.password)
 	  		//1er callback, s'exécute lorsque la méthode me.login
 	  		//a terminé son exécution
 	  		.then(function(res) {
 	  			//stocke l'objet renvoyé par la factory dans le scope
-	  			$scope.user = res;
+	  			// $scope.$parent.user = res._data;
+					init();
 	  			$scope.err.message = null;
 	  			$location.path("/profil");
 	  		})
@@ -82,16 +86,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 
 	};
 
-	/**
-	 * Cette fonction permet de se déconnecter
-	 */
-	$scope.logout = function () {
-		//efface les identifiants du scope et le cookie
-		$scope.loggedIn = false;
-		$rootScope.globals = {};
-		$cookies.remove('globals');
-		$http.defaults.headers.token = '';
-	};
+
 
 	/**
 	 * La méthode update permet de modifier les attributs de l'objet User
@@ -99,9 +94,9 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	 */
 	$scope.update= function(){
 
-		if($scope.user){
+		if($scope.$parent.user){
 
-			 if(!$scope.user.first_name || !$scope.user.last_name) {
+			 if(!$scope.$parent.user.first_name || !$scope.$parent.user.last_name) {
 
 				$scope.err.message = "Champs Nom et Prénom obligatoires";
 			}
@@ -109,6 +104,8 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			else {
 
 				//$scope.user.avatar = ROOT_URL + '/statics/' + fileService.getFile().name;
+				console.log("Dans login_ctrl/update $scope.$parent.user : ", $scope.$parent.user);
+				console.log("token : ", $rootScope.globals.currentUser.token);
 				var encodedPicture;
 				fileService.encodeFile()
 				.then(function(fileB64){
@@ -118,15 +115,17 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 					}
 				})
 				.then(function(avatar){
-					$scope.user.avatar = avatar;
+					$scope.$parent.user.avatar = avatar;
+					console.log("avatar updated user : ", $scope.$parent.user);
 					//appel de la fonction update de la factory "me"
-					return me.update($scope.user);
+					return me.update($scope.$parent.user);
 				})
 				.then(function(res) {
 
-					//stocke l'objet tmp_user renvoyé par la factory dans le scope
-					$scope.user = res;
+					init();
+
 					$scope.err.message = null;
+					console.log("updated user : ", $scope.$parent.user);
 					//$scope.success.message = null;
 
 					//fin de l'inscription
@@ -159,11 +158,23 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	};
 
 	var init = function () {
-		me.me()
-		.then (function(user){
-			$scope.user = user;
-			$scope.card._sender = $scope.user;
-		});
+		// if($scope.$parent.user)
+			//$scope.user = $rootScope.user;
+			//$scope.card._sender = $scope.user;
+		if($scope.$parent.loggedIn){
+			me.me()
+      .then(function(user){
+      	$rootScope.user = $scope.$parent.user = user._data || {};
+				$scope.$parent.user_card._sender = $scope.$parent.user;
+				console.log("user dans login controller : ", $scope.$parent.user);
+      })
+			.catch(function(err){
+				console.error('Dans login_ctrl/init erreur : ', err);
+			});
+		}
+
+			// console.log("dans LoginCtrl, user : ", $scope.user);
+			// console.log("dans LoginCtrl, card : ", $scope.user_card);
 	};
 
 	init();

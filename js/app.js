@@ -1,8 +1,8 @@
 //déclaration du module principal l'application
 //le premier paramètre définit le nom du module, le second
 //les dépendances utilisées
-var app = angular.module("ivipulse", [ 
-  // Dépendances du module 
+var app = angular.module("ivipulse", [
+  // Dépendances du module
   'ngRoute',
   'ngCookies',
   'mgcrea.ngStrap',
@@ -50,7 +50,7 @@ app.config(['$routeProvider', function($routeProvider) {
 /**
  * Ce run permet de récupérer les données du user depuis le cookie vers le rootScope.
  * Si le cookie est vide, redirige vers login.
- * 
+ *
  * @param  {[type]} $rootScope [description]
  * @param  {[type]} $location  [description]
  * @param  {[type]} $cookies   [description]
@@ -59,21 +59,26 @@ app.config(['$routeProvider', function($routeProvider) {
  */
 app.run(['$rootScope', '$location', '$cookies', '$http', 'me',
     function ($rootScope, $location, $cookies, $http, me) {
-        
+
         console.log("Lancement de app.run()");
 
 
-        
-        //récupère le cookie 'globals' et le stocke 
+
+        //récupère le cookie 'globals' et le stocke
         //dans la variable globals du $rootScope
         $rootScope.globals = $cookies.getObject('globals') || {};
-        
 
-        //si l'objet currentUser existe, on récupère son token et on l'insère 
+
+        //si l'objet currentUser existe, on récupère son token et on l'insère
         //dans le header des requêtes http
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.token = $rootScope.globals.currentUser.token;
-            me.me();
+            // me.me()
+            // .then(function(user){
+            //   $rootScope.user = user._data;
+            //   console.log("rootScope.user dans app.js ", $rootScope.user);
+            // });
+            
         }
   		//écoute des changements de route sur l'événement $locationChangeStart
   		//du service $location d'angular
@@ -85,7 +90,7 @@ app.run(['$rootScope', '$location', '$cookies', '$http', 'me',
             }
             //idem pour le cas où l'utilisateur n'a pas finalisé son incription
             //on le redirige vers profil
-            else if($rootScope.globals.currentUser && 
+            else if($rootScope.globals.currentUser &&
             		$rootScope.globals.currentUser.new_user &&
             		$location.path() !== '/profil' &&
             		$location.path() !== '/shop') {

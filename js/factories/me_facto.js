@@ -117,8 +117,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
         $http(req)
         .success(function(user) {
-          me.init(user);
-          resolve(user);
+          resolve(me.init(user));
         })
         .error(function() {
           reject(message.error.server);
@@ -162,8 +161,11 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         .success(function(res) {
 
           if(saveToken(res)){
+            console.log("me/login/res.me : ", res.me);
             $rootScope.user = res.me;
-            resolve(me.init(res.me));
+            var init_user = me.init(res.me);
+            console.log("me/login/init res.me : ", init_user);
+            resolve(res.me);
           }
           //si problème serveur
           else {
@@ -184,7 +186,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
      * @return {[Promise]} retourne la promesse contenant l'objet user
      */
     signin: function (email, password) {
-
+      console.log("Dans me.signin : password = ", password);
       //déclaration de l'objet data, pour l'appel du service d'inscription
       var data = {
         email: email,
@@ -201,7 +203,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         })
         //en cas de succès
         .success(function(res) {
-
+          $rootScope.user = res.me;
           this.me._new_user = true;
 
           if(saveToken(res)){
@@ -239,6 +241,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
      * @return {[type]}          [description]
      */
     update: function(tmp_user) {
+      console.log("dans me/update new user : ", tmp_user);
     var req = {
         method: 'PUT',
         url: ROOT_URL + "/users/" + tmp_user._id,
@@ -251,7 +254,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       return $q(function(resolve, reject){
        $http(req)
         .success(function(new_user) {
-
+          $rootScope.user = new_user;
           //mise à jour des identifiants globaux
           $rootScope.globals.currentUser.first_name = new_user.first_name;
           $rootScope.globals.currentUser.last_name =  new_user.last_name;
@@ -262,11 +265,11 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
             new_user.birth_date = new Date(new_user.birth_date);
           }
           if(new_user.first_name && new_user.first_name !== "" && new_user.last_name && new_user.last_name !== ""){
-            this.me._new_user = false;
+            this.me._new_user = false; //a revoir
             return resolve(new_user);
           }
-          else
-            reject("Champs nom ou prénom manquants");
+          else//non
+            reject("Champs nom ou prénom manquants");//non
         }).error(reject);
       });
     },

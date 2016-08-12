@@ -86,7 +86,7 @@
 	et initialisation du contrôleur principal -->
 	<body ng-app="ivipulse" ng-controller="main_ctrl" data-spy="scroll">
 		<div class="container-fluid bar-global">
-		<nav class="navbar navbar-inverse" role="navigation" bs-navbar ng-controller="login_ctrl">
+		<nav class="navbar navbar-inverse" role="navigation" bs-navbar>
 			<div class="container">
 				<div class="navbar-header">
 			          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-3">
@@ -117,7 +117,7 @@
 						<a href="#" ng-click="logout()" ng-show="loggedIn">Logout</a>
 					</li>
 					<li class="barreBienvenue" ng-show="loggedIn">
-						<span>Bienvenue  &nbsp&nbsp{{user.first_name}} &nbsp{{user.last_name}}
+						<span>Bienvenue  &nbsp&nbsp{{globals.currentUser.first_name}} &nbsp{{globals.currentUser.last_name}}
 						</span>
 					</li>
 		          </ul>
