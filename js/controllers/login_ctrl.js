@@ -10,7 +10,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 
 	$scope.success = {
 		message: ""
-	}
+	};
 
 	$scope.imgUpload = fileService.getFile();
 
@@ -71,8 +71,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	  		//1er callback, s'exécute lorsque la méthode me.login
 	  		//a terminé son exécution
 	  		.then(function(res) {
-	  			//stocke l'objet renvoyé par la factory dans le scope
-	  			// $scope.$parent.user = res._data;
+
 					init();
 	  			$scope.err.message = null;
 	  			$location.path("/profil");
@@ -102,10 +101,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			}
 
 			else {
-
-				//$scope.user.avatar = ROOT_URL + '/statics/' + fileService.getFile().name;
-				console.log("Dans login_ctrl/update $scope.$parent.user : ", $scope.$parent.user);
-				console.log("token : ", $rootScope.globals.currentUser.token);
+				
 				var encodedPicture;
 				fileService.encodeFile()
 				.then(function(fileB64){
@@ -116,7 +112,6 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 				})
 				.then(function(avatar){
 					$scope.$parent.user.avatar = avatar;
-					console.log("avatar updated user : ", $scope.$parent.user);
 					//appel de la fonction update de la factory "me"
 					return me.update($scope.$parent.user);
 				})
@@ -125,8 +120,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 					init();
 
 					$scope.err.message = null;
-					console.log("updated user : ", $scope.$parent.user);
-					//$scope.success.message = null;
+					$scope.success.message = null;
 
 					//fin de l'inscription
 					if($rootScope.globals.currentUser.new_user){
@@ -158,23 +152,19 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	};
 
 	var init = function () {
-		// if($scope.$parent.user)
-			//$scope.user = $rootScope.user;
-			//$scope.card._sender = $scope.user;
+
 		if($scope.$parent.loggedIn){
 			me.me()
       .then(function(user){
-      	$rootScope.user = $scope.$parent.user = user._data || {};
-				$scope.$parent.user_card._sender = $scope.$parent.user;
-				console.log("user dans login controller : ", $scope.$parent.user);
+				if(user){
+					$rootScope.user = $scope.$parent.user = user._data;
+					$scope.$parent.user_card._sender = $scope.$parent.user;
+				}
       })
 			.catch(function(err){
 				console.error('Dans login_ctrl/init erreur : ', err);
 			});
 		}
-
-			// console.log("dans LoginCtrl, user : ", $scope.user);
-			// console.log("dans LoginCtrl, card : ", $scope.user_card);
 	};
 
 	init();

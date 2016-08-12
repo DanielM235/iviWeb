@@ -1,11 +1,10 @@
 //création du contrôleur "main_ctrl"
-app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $aside,  Cards, me, $cookies) {
+app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $aside,  Cards, me, $cookies, $route) {
 
 	console.log("MainCtrl initialized");
 	//déclaration et initialisation des variables
 
 	$scope.user = $rootScope.user || {};
-	//$scope.user = $rootScope.user || {};
 	$scope.err = {
 		message: ""
 	};
@@ -35,6 +34,7 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
 		$rootScope.globals = {};
 		$cookies.remove('globals');
 		$http.defaults.headers.token = '';
+		$route.reload();
 	};
 
 
