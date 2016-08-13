@@ -2,7 +2,7 @@
 app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $cookies, me, fileService) {
 
 	console.log("LoginCtrl initialized");
-	console.log("début LoginCtrl, scope.user : ", $scope.user);
+	console.log("début LoginCtrl, scope.user : ", $scope.$parent.user);
 	//déclaration des variables du $scope
 	//$scope.user = {};
 	//$scope.card = {};
@@ -156,8 +156,18 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 
   $scope.select_template = function(template) {
     $scope.$parent.user_card._sender.template =
-    me._data.template = template;
+    $scope.$parent.user.template = template;
   };
+
+	var count_owned = function(cards) {
+		var compteur = 0;
+		for(i=0; i < cards.length; i++ ){
+			if(cards[i].accepted){
+				compteur++;
+			}
+		}
+		$scope.$parent.countOwned = compteur;
+	};
 
 	var init = function () {
 
@@ -167,6 +177,8 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 				if(user){
 					$rootScope.user = $scope.$parent.user = user._data;
 					$scope.$parent.user_card._sender = $scope.$parent.user;
+
+					count_owned(user._data.cards);
 				}
       })
 			.catch(function(err){

@@ -8,7 +8,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       server: "Problème interne, essayez plus tard"
     }
   };
-
+  $rootScope.globals = $cookies.getObject('globals') || {};
 
   /**
      * Cette fonction permet de maintenir l'utilisateur authentifié sur le site.
@@ -280,16 +280,16 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
      */
     get_cardsCount : $q(function(resolve,reject){
 
+      console.log("dans me_factory, rootScope.globals : ", $rootScope.globals);
+
       if ($rootScope.globals && $rootScope.globals.currentUser) {
-        var data = {};
         var req = {
           method : 'GET',
           url: ROOT_URL + "/users/me/counters",
-              headers: {
-                token: $rootScope.globals.currentUser.token
-              },
-              data: data
-          };
+          headers: {
+            token: $rootScope.globals.currentUser.token
+          }
+        };
         $http(req)
         .success(function(res){
           resolve(res);

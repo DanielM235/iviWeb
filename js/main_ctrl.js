@@ -21,6 +21,7 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
 
 	$scope.countShared = {};
   $scope.countReciprocal = {};
+	$scope.countOwned = {};
 
 
 	/**
@@ -45,9 +46,13 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
     var getSharedCard = function(){
         me.get_cardsCount
         .then(function(res){
-            $scope.countShared = res.shared;
-            $scope.countReciprocal = res.reciprocal;
-        });
+					console.log("dans main_ctrl, getSharedCard : ", res);
+          $scope.countShared = res.shared;
+          $scope.countReciprocal = res.reciprocal;
+        })
+				.catch(function(err){
+					console.log("Dans main_ctrl, erreur getSharedCard : ", err);
+				});
     };
 
 	/**

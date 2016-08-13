@@ -14,13 +14,13 @@
 	background-color: white;
 	text-align: center;
 	margin-left: auto;
-  	margin-right: auto;
-  	margin-top: 30px;
-  	width: 1000px; 
-  	height: 90%;
-  	padding-top: 10px;
-  	overflow-x:hidden;
-  	border-radius: 10px;
+	margin-right: auto;
+	margin-top: 30px;
+	width: 1000px;
+	height: 90%;
+	padding-top: 10px;
+	overflow-x:hidden;
+	border-radius: 10px;
 }
 
 .personaliserCarte{
@@ -30,7 +30,7 @@
 	text-align: center;
 	border:1px ;
 	padding:10px 20px;
-	font-size:18px; 
+	font-size:18px;
 	color: #50E3C2;
 	margin-top: 2px;
 	margin-bottom: 10px;
@@ -42,7 +42,7 @@
 .bandSelect{
 	margin-left: auto;
   	margin-right: auto;
-  	width: 1000px; 
+  	width: 1000px;
   	height: 15px;
 }
 
@@ -116,7 +116,7 @@
 #slider-thumbs{
 	width: 100%;
 	margin-left: auto;
-  	margin-right: auto;
+  margin-right: auto;
 }
 
 .modal-content{
