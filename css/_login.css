@@ -18,15 +18,15 @@
 
 .fond-left{
 	width: 30%;
-	
+
 }
 
 .logo{
 	width: 250px;
 	height: 250px;
-	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom,
 		from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
-	
+
 }
 
 .fond-middle{
@@ -35,7 +35,7 @@
 
 .logoText{
 	height: 130px;
-	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom,
 		from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
 	margin-right: 25px;
 	margin-left: 50px;
@@ -47,9 +47,9 @@
 	width: 100%;
 	width: 400px;
 	background-image: url(../img/splash.jpg);
-	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom,
 		from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
-	
+
 }
 
 .text{
@@ -86,4 +86,31 @@
 	background-image: url(../img/splash.jpg);
 	height: 100px;
 	width: 100px;
+}
+
+.modal-backdrop.am-fade {
+  opacity: .5;
+  transition: opacity .15s linear;
+  &.ng-enter {
+    opacity: 0;
+    &.ng-enter-active {
+      opacity: .5;
+    }
+  }
+  &.ng-leave {
+    opacity: .5;
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+}
+.card-thumbnail {
+    width: 150px !important;
+    height: 80px !important;
+    box-shadow: 10px 10px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    z-index: 1;
+}
+.modal-dialog {
+    width: 400px;
+		margin-left: 800px;
 }

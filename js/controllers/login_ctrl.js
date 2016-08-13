@@ -12,7 +12,10 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		message: ""
 	};
 
-	$scope.imgUpload = fileService.getFile();
+  $scope.modal = {
+  "title": "Choisissez un fond de carte",
+  "content": "Liste des templates"
+};
 
 
 	$scope.social_networks = ['Facebook', 'Twitter', 'LinkedIn', 'Snapchat',
@@ -101,7 +104,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			}
 
 			else {
-				
+
 				var encodedPicture;
 				fileService.encodeFile()
 				.then(function(fileB64){
@@ -150,6 +153,11 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		var file = fileService.getFile();
 		$scope.imgUpload = file;
 	};
+
+  $scope.select_template = function(template) {
+    $scope.$parent.user_card._sender.template =
+    me._data.template = template;
+  };
 
 	var init = function () {
 
