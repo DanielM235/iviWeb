@@ -14,9 +14,9 @@
     text-align: center;
 	line-height: 300%;
 }
-	
+
 .onl_login .onl_socialButtons a {
-	color: white; // In yourUse @body-bg 
+	color: white; // In yourUse @body-bg
 	opacity:0.9;
 
 }
@@ -37,7 +37,7 @@
 
 .onl_login .onl_socialButtons a:hover {
     color: black;
-	opacity:1; 
+	opacity:1;
 }
 
 .onl_login .onl_loginOr {
@@ -64,7 +64,7 @@
 	background-color: white;
 	width: 3em;
 	text-align: center;
-}			
+}
 
 .onl_login .onl_loginForm .input-group.i {
 	width: 2em;
@@ -73,12 +73,12 @@
     color: red;
 }
 
-	
+
 @media (min-width: 768px) {
     .onl_login .onl_forgotPwd {
         text-align: right;
 		margin-top:10px;
- 	}		
+ 	}
 }
 .progress {
     position: relative;
@@ -155,5 +155,8 @@ text-align: center;
 .resultat-table-profil{
 	text-align: center;
 	color:grey;
-
+}
+.image-upload > input
+{
+    display: none;
 }
