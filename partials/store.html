@@ -56,8 +56,8 @@
 						                      <br>
 						                      <div class="infos-text" align="left">{{card._sender.first_name}} {{card._sender.last_name}}
 						                      </div>
-						                      <div class="infos-sup">Sociologue en chef</div>
-						                      <div class="infos-sup">Bureau des renseignements généraux</div>
+						                      <div class="infos-sup">Profession</div>
+						                      <div class="infos-sup">Entreprise</div>
 						                    </div>
 						                  </div>
 
@@ -207,7 +207,9 @@
 		            </div>
 
 		            <div class="col-xs-offset-6 form-group col-xs-6 col-sm-6 col-md-6" name="delete-area">
-		                 <button class="btn btn-default btn-block" ng-click="deleteContact(card._id)" data-toggle="modal" data-placement="center" data-target="#modalDelete">Supprimer
+										 <button class="btn btn-default btn-block" data-toggle="modal" data-placement="center" data-target="#modalDelete">Supprimer
+		                 </button>
+										 <button class="btn btn-default btn-block" ng-click="full_contacts()">FullContacts
 		                 </button>
 
 									<!-- modal delete -->
@@ -224,11 +226,16 @@
 							                    <td>
 							                        <p class="p2">
 							                        	<span>
-							                        		{{message.delete}}
+							                        		Voulez-vous supprimer ce contact? {{message.delete}}
 							                        	</span>
 							                        </p>
 							                    </td>
 							                </tr>
+															<tr>
+																<td>
+																	<button type="button" name="button" ng-click="deleteContact()">Supprimer</button>
+																</td>
+															</tr>
 							            </table>
 							          </div>
 							      </div>

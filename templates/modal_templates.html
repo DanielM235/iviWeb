@@ -7,7 +7,7 @@ role="dialog" style="z-index: 1050; display: block;">
           <div class="row">
             <div class="col-lg-1">
               <ul class="hide-bullets" >
-                <li class="col-lg-3" ng-repeat="template in user.premium_cards">
+                <li class="col-lg-3" ng-repeat="template in user.premium_cards track by template">
                   <a class="thumbnail card {{template}}" ng-click="select_template(template);">
                   </a>
                 </li>

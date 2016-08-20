@@ -25,7 +25,6 @@ app.controller("store_ctrl", function ($scope, $routeParams, $alert, $sce, Cards
 		.then (function(cards){
 			$scope.cards = cards;
 			$scope.selected_card = $scope.cards[0] || {};
-			console.log("dans store_ctrl, cards : ", cards);
 		});
 	};
 
@@ -36,6 +35,7 @@ app.controller("store_ctrl", function ($scope, $routeParams, $alert, $sce, Cards
 	 */
 	$scope.selectContact = function(card) {
 		$scope.selected_card = card;
+		console.log("dans store_ctrl/selectContact/card : ", card);
 	};
 
 	$scope.addCardToFolder = function(card){
@@ -63,15 +63,23 @@ app.controller("store_ctrl", function ($scope, $routeParams, $alert, $sce, Cards
  * @param contact_id : Identifiant du contact à supprimer
  */
 
-	$scope.deleteContact = function(contact_id){
-		Cards.decline(contact_id)
+	$scope.deleteContact = function(){
+		console.log("dans deleteContact contact_id : ", $scope.selected_card._id);
+		Cards.decline($scope.selected_card._id)
 		.then(function(){
-			console.log("StoreCtrl : deleteContact, success, id = ", contact_id);
-			refreshCards();
+			console.log("StoreCtrl : deleteContact, success, id = ", $scope.selected_card._id);
+			refresh_cards();
 			$scope.message.delete = "Carte supprimée";
 		})
-		.error(function(){
+		.catch(function(){
 			$scope.message.delete = "Erreur de suppression";
+		});
+	};
+
+	$scope.full_contacts = function() {
+		Cards.full()
+		.then(function(message){
+			console.log("full_contacts : ", message);
 		});
 	};
 

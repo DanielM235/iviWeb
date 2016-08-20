@@ -1,5 +1,5 @@
 //création du contrôleur "main_ctrl"
-app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $aside,  Cards, me, $cookies, $route) {
+app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $aside,  Cards, me, $cookies, $route, Search) {
 
 	console.log("MainCtrl initialized");
 	//déclaration et initialisation des variables
@@ -11,7 +11,10 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
 	$scope.state = {
 		mode: "connexion"
 	};
+
 	$scope.contacts_filter = "";
+	$scope.search_result = {};
+
 	$scope.aside = {
 	  "title": "Title"
 	};
@@ -22,6 +25,20 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
 	$scope.countShared = {};
   $scope.countReciprocal = {};
 	$scope.countOwned = {};
+
+	//search
+	var search = function(q) {
+		search_for = q.trim();
+
+		if(search_for) {
+			Search.find(search_for)
+			.then(function (found_users) {
+				$scope.search_result = found_users;
+			});
+		}
+
+	};
+	$scope.$watch("contacts_filter", search);
 
 
 	/**

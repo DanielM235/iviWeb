@@ -15,7 +15,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
   $scope.modal = {
   "title": "Choisissez un fond de carte",
   "content": "Liste des templates"
-};
+	};
 
 
 	$scope.social_networks = ['Facebook', 'Twitter', 'LinkedIn', 'Snapchat',
@@ -115,6 +115,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 				})
 				.then(function(avatar){
 					$scope.$parent.user.avatar = avatar;
+					//$scope.$parent.user.premium_cards = [];
 					//appel de la fonction update de la factory "me"
 					return me.update($scope.$parent.user);
 				})

@@ -37,24 +37,24 @@
               </div>
             </div>
             <div class="row">
-              <div class="card-container" ng-repeat="card in cards | searchContactsFilter:contacts_filter">
+              <div class="card-container" ng-repeat="card in search_result | searchContactsFilter:contacts_filter">
               <!-- <ivicard card="card"></ivipulse> -->
 
                 <div class="sous-main card background background-search {{card._sender.template}}">
 
                   <div class="col-xs-3">
                     <div class="avatar-content">
-                      <div style="background-image:url({{card._sender.avatar}});height: 100px;width: 100px;background-size: cover;;background-repeat: no-repeat;border-radius: 50%;border: 1px solid white; overflow: hidden;margin-top:5px;" class="avatar-img">
+                      <div style="background-image:url({{card.avatar}});height: 100px;width: 100px;background-size: cover;;background-repeat: no-repeat;border-radius: 50%;border: 1px solid white; overflow: hidden;margin-top:5px;" class="avatar-img">
                       </div>
                     </div>
                   </div>
                   <div class="col-xs-9">
                     <div class="contact-infos">
                       <br>
-                      <div class="infos-text" align="left">{{card._sender.first_name}} {{card._sender.last_name}}
+                      <div class="infos-text" align="left">{{card.first_name}} {{card.last_name}}
                       </div>
-                      <div class="infos-sup">Sociologue en chef</div>
-                      <div class="infos-sup">Bureau des renseignements généraux</div>
+                      <div class="infos-sup">Profession</div>
+                      <div class="infos-sup">Entreprise</div>
                     </div>
                   </div>
                 </div>
